@@ -14,6 +14,8 @@ int main(void)
   printf("Erro na abertura do arquivo!");
   return 1;
   }
+
+  // testando configuracao do ubuntu
   
   printf("Escreva uma palavra para testar gravacao de arquivo: ");
   scanf("%s", palavra);
