@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define CAIXAS 3
-
+// lefanteeee!!
 // nesse arquivo farei a distribuicao das vendas
 // nos caixas disponiveis, de acordo com o tempo fornecido na entrada
 
@@ -137,4 +137,6 @@ void main() {
   //   printf("\nindice %d: %d", i, auxiliarTempos[i]);
   // }
   distribuiVendasNosCaixas(temposRegistrados, tamanhoEntrada, caixas);
+
+  printf("\nohana quer dizer familia");
 }
