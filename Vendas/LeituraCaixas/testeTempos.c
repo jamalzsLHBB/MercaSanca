@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define CAIXAS 3
+
 // nesse arquivo farei a distribuicao das vendas
 // nos caixas disponiveis, de acordo com o tempo fornecido na entrada
 
@@ -53,12 +55,18 @@ int indiceTempoAtual(int indice) {
 
 void distribuiVendasNosCaixas(int temposDeEntrada[], int tamanhoEntrada, int caixas) {
   int auxiliarTempos[caixas];
-  int registrosCaixas[10][caixas]; // cada caixa pode ter ate 10 vendas, deve armazenar indice da venda 
+  int registrosCaixas[10][caixas]; // cada caixa pode ter ate 10 vendas, deve armazenar indice da venda
+
+  // popula matriz com todos os valores sendo -1
+  for (int i = 0; i < 10; i++){
+    for(int j = 0; j < caixas; j++){
+      registrosCaixas[i][j] = -1;
+    }
+  }
 
   inicializaCaixas(auxiliarTempos, caixas);
 
   int contador = 0;
-
   int prox = temposDeEntrada[0];
 
   while(contador <  tamanhoEntrada){
@@ -77,8 +85,16 @@ void distribuiVendasNosCaixas(int temposDeEntrada[], int tamanhoEntrada, int cai
       for(int i = 0; i < caixas; i++){
         printf("%d ", auxiliarTempos[i]);
       }
+      printf("\n");
 
-      registrosCaixas[contador][menorCaixaDisponivel] = contador;
+      for(int i = 0; i < 10; i++){
+        if(registrosCaixas[i][menorCaixaDisponivel] == -1) {
+          registrosCaixas[i][menorCaixaDisponivel] = contador;
+          break;
+        }
+      }
+
+      // registrosCaixas[contador][menorCaixaDisponivel] = contador;
       contador++;
       prox = temposDeEntrada[contador];
 
@@ -88,7 +104,7 @@ void distribuiVendasNosCaixas(int temposDeEntrada[], int tamanhoEntrada, int cai
       subtraiTempos(auxiliarTempos, prox, caixas);
     }
   }
-
+  printf("\n");
   for(int i = 0; i < tamanhoEntrada; i++){
     for(int j = 0; j < caixas; j++){
       printf("%d ", registrosCaixas[i][j]);
@@ -121,5 +137,4 @@ void main() {
   //   printf("\nindice %d: %d", i, auxiliarTempos[i]);
   // }
   distribuiVendasNosCaixas(temposRegistrados, tamanhoEntrada, caixas);
-  
 }
