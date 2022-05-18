@@ -3,8 +3,8 @@
 void main() {
   FILE *arq;
   
-  // Abre o arquivo teste5Entradas.txt para leitura
-  arq = fopen("teste5Entradas.txt", "rt");
+  // Abre o arquivo 6EntradasTeste.txt para leitura
+  arq = fopen("6EntradasTeste.txt", "rt");
   
   // Se houve erro na abertura
   if (arq == NULL) {
@@ -12,23 +12,24 @@ void main() {
      return;
   }
 
-  int quantidade, preco, tempo, pagamento;
+  int id, quantidade, preco, tempo, pagamento;
 
   // retorna a leitura para o inicio do arquivo
   rewind(arq);
 
   // enquanto nao for o fim do arquivo
-  int quantidades[4];
-  int precos[4];
-  int tempos[4];
-  int pagamentos[4];
+  int ids[6];
+  int quantidades[6];
+  int precos[6];
+  int tempos[6];
+  int pagamentos[6];
 
   int i = 0;
 
   while(!feof(arq)){
     // le cada item do arquivo txt como inteiro
-    fscanf(arq, "%d %d %d %d", &quantidade, &preco, &tempo, &pagamento);
-    printf("%d %d %d %d\n", quantidade, preco, tempo, pagamento);
+    fscanf(arq, "%d %d %d %d %d", &id, &quantidade, &preco, &tempo, &pagamento);
+    printf("%d %d %d %d %d\n", id, quantidade, preco, tempo, pagamento);
     printf("\ntempo: %d\n", tempo);
     quantidades[i] = quantidade;
     precos[i] = preco;
@@ -37,14 +38,6 @@ void main() {
     pagamentos[i] = pagamento;
     i++;
   }
-
-  // for (int j = 0; j < 10; j++){
-  //   printf("\nindice[%d]: %d", j, pagamentos[j]);
-  // }
-
-  // for (int j = 0; j < 10; j++){
-  //   printf("\nindice[%d]: %d", j, tempos[j]);
-  // }
-  // fecha arquivo
+  
   fclose(arq);
 }
