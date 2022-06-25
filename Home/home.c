@@ -6,17 +6,17 @@
 
 //variaveis globais
 FILE *file;
- struct funcionario{
+//int indice = 0;
+struct funcionario{
     int id;
     //char usuario[100];
     char senha[100];
     char nome[100];
     char email[100];
-}func;
+}func[10];
 
-void login(){
+void login(int *ind){
     char email[100], senha[100];
-
     file = fopen("teste.txt", "r");
     if(file==NULL){
         printf("\\nNao ha dados cadastrados!!");
@@ -29,7 +29,7 @@ void login(){
     scanf("%s", &senha);
     fflush(stdin);
     while(!feof(file)){
-        if(email == func.email && senha == func.senha){
+        if(email == func[*ind].email && senha == func[*ind].senha){
             printf("\n\nUsuario logado!");
             return;
         }else{
@@ -42,26 +42,28 @@ void login(){
 }
 
 
-void cadastro(){
-     char conf;
+void cadastro(int *ind){
+    char conf;
+    func[*ind].id = *ind;
     file = fopen("teste.txt", "w");
     if(file==NULL){
         printf("\nErro ao abrir o arquivo!");
     }
     printf("\nC A D R A S T O\n");
-    printf("ID: ");
-    scanf("%d", &func.id);
+    printf("ID: %d\n", *ind);
+    fprintf(file, "%d", func[*ind].id);
+    //scanf("%d", &func[*ind].id);
     //fputs(func.id, file);
     fflush(stdin);
     printf("Nome: ");
-    scanf("%s",&func.nome);
-    fprintf(file, "%s\n", func.nome);
+    scanf("%s",&func[*ind].nome);
+    fprintf(file, "%s\n", func[*ind].nome);
     printf("Email: ");
-    scanf("%s", &func.email);
-    fprintf(file, "%s\n", func.email);
+    scanf("%s", &func[*ind].email);
+    fprintf(file, "%s\n", func[*ind].email);
     printf("Senha: ");
-    scanf("%s",&func.senha);
-    fprintf(file, "%s\n", func.senha);
+    scanf("%s",&func[*ind].senha);
+    fprintf(file, "%s\n", func[*ind].senha);
 
     printf("\n\nConfirma os dados para gravacao ? (S/N): ");
     do{
@@ -89,7 +91,7 @@ void start(){
 
 
 int main(){
-    int op;
+    int op, indice=1;
     do{
         start();
         printf("\n\nOpcao: ");
@@ -98,13 +100,13 @@ int main(){
         switch(op){
             case 1:
                 system("cls");
-                login();
+                login(&indice);
                 //printf("\nEm desenvolvimento");
                 getchar();
                 break;
             case 2:
                 system("cls");
-                cadastro();
+                cadastro(&indice);
                 fclose(file);
                 break;
             case 3:
