@@ -98,8 +98,8 @@ int main(){
         switch(op){
             case 1:
                 system("cls");
-                //login();
-                printf("\nEm desenvolvimento");
+                login();
+                //printf("\nEm desenvolvimento");
                 getchar();
                 break;
             case 2:
