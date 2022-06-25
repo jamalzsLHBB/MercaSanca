@@ -25,7 +25,7 @@ void login(){
     printf("\nL O G I N\n\n");
     printf("Email: ");
     scanf("%s", &email);
-    printf("\nSenha: ");
+    printf("Senha: ");
     scanf("%s", &senha);
     fflush(stdin);
     while(!feof(file)){
