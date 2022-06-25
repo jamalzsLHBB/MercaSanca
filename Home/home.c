@@ -13,9 +13,9 @@ struct funcionario{
     char senha[100];
     char nome[100];
     char email[100];
-}func[10];
+}func;
 
-void login(int *ind){
+void login(){
     char email[100], senha[100];
     file = fopen("teste.txt", "r");
     if(file==NULL){
@@ -29,7 +29,7 @@ void login(int *ind){
     scanf("%s", &senha);
     fflush(stdin);
     while(!feof(file)){
-        if(email == func[*ind].email && senha == func[*ind].senha){
+        if(email == func.email && senha == func.senha){
             printf("\n\nUsuario logado!");
             return;
         }else{
@@ -42,28 +42,27 @@ void login(int *ind){
 }
 
 
-void cadastro(int *ind){
+void cadastro(){
     char conf;
-    func[*ind].id = *ind;
     file = fopen("teste.txt", "w");
     if(file==NULL){
         printf("\nErro ao abrir o arquivo!");
     }
     printf("\nC A D R A S T O\n");
-    printf("ID: %d\n", *ind);
-    fprintf(file, "%d", func[*ind].id);
-    //scanf("%d", &func[*ind].id);
+    printf("ID: ");
+    scanf("%d", &func.id);
+    fprintf(file, "%d", func.id);
     //fputs(func.id, file);
     fflush(stdin);
     printf("Nome: ");
-    scanf("%s",&func[*ind].nome);
-    fprintf(file, "%s\n", func[*ind].nome);
+    scanf("%s",&func.nome);
+    fprintf(file, "%s\n", func.nome);
     printf("Email: ");
-    scanf("%s", &func[*ind].email);
-    fprintf(file, "%s\n", func[*ind].email);
+    scanf("%s", &func.email);
+    fprintf(file, "%s\n", func.email);
     printf("Senha: ");
-    scanf("%s",&func[*ind].senha);
-    fprintf(file, "%s\n", func[*ind].senha);
+    scanf("%s",&func.senha);
+    fprintf(file, "%s\n", func.senha);
 
     printf("\n\nConfirma os dados para gravacao ? (S/N): ");
     do{
@@ -91,7 +90,7 @@ void start(){
 
 
 int main(){
-    int op, indice=1;
+    int op;
     do{
         start();
         printf("\n\nOpcao: ");
@@ -100,13 +99,13 @@ int main(){
         switch(op){
             case 1:
                 system("cls");
-                login(&indice);
+                login();
                 //printf("\nEm desenvolvimento");
                 getchar();
                 break;
             case 2:
                 system("cls");
-                cadastro(&indice);
+                cadastro();
                 fclose(file);
                 break;
             case 3:
