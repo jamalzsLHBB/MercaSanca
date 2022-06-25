@@ -5,7 +5,7 @@
 #include<conio.c>
 
 //variaveis globais
-FILE *file;
+//FILE *file;
 //int indice = 0;
 struct funcionario{
     int id;
@@ -17,7 +17,7 @@ struct funcionario{
 
 void login(){
     char email[100], senha[100];
-    file = fopen("teste.txt", "r");
+    FILE *file = fopen("teste.txt", "r");
     if(file==NULL){
         printf("\\nNao ha dados cadastrados!!");
     }
@@ -44,14 +44,14 @@ void login(){
 
 void cadastro(){
     char conf;
-    file = fopen("teste.txt", "w");
+    FILE *file = fopen("teste.txt", "a+");
     if(file==NULL){
         printf("\nErro ao abrir o arquivo!");
     }
     printf("\nC A D R A S T O\n");
     printf("ID: ");
     scanf("%d", &func.id);
-    fprintf(file, "%d", func.id);
+    fprintf(file, "%d\n", func.id);
     //fputs(func.id, file);
     fflush(stdin);
     printf("Nome: ");
@@ -73,6 +73,7 @@ void cadastro(){
 		    system("cls");
 			fflush(file);//descarrega o buffer no disco
 			printf("\n\nDados salvos com sucesso!");
+            fclose(file);
 			getche();
 	 	}
 		system("cls");
@@ -106,7 +107,6 @@ int main(){
             case 2:
                 system("cls");
                 cadastro();
-                fclose(file);
                 break;
             case 3:
                 system("cls");
