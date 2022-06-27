@@ -15,6 +15,27 @@ struct funcionario{
     char email[100];
 }func;
 
+void login_improvisado(){
+    char email[100], senha[100];
+    printf("\nL O G I N\n\n");
+    do{
+        printf("Email: ");
+        scanf("%s", &email);
+        printf("Senha: ");
+        scanf("%s", &senha);
+    
+        if(email == 'admin' && senha == 'admin'){
+            printf("\n\nUsuario logado");
+            getchar();
+            return;
+        }
+        else{
+            printf("\n\nUsuario não encontrado ou login invalido!");
+            getchar();
+        }
+    }while(email!=NULL && senha!=NULL);
+}
+
 void login(){
     char email[100], senha[100];
     FILE *file = fopen("teste.txt", "r");
